@@ -42,6 +42,9 @@ var tasks = [
     }
   },
   function(done) {
+    if(distro == 'Windows') {
+      return done();
+    }
     exec('uname -r', function (err, stdout, stderr) {
       result.kernel = 'Kernel: ' + stdout.trim();
       done();
@@ -113,6 +116,9 @@ var tasks = [
     done();
   },
   function(done) {
+    if(distro == 'Windows') {
+      return done();
+    }
     exec('df -Tlh --total -t ext4 -t ext3 -t ext2 -t reiserfs -t jfs -t ntfs -t fat32 -t btrfs -t fuseblk', function (err, stdout, stderr) {
       var total = stdout.trim().split('\n').pop(),
           used = total.split(/\s+/)[3],
@@ -156,20 +162,30 @@ function fullParallel(callbacks, last) {
 }
 
 
-// start by getting the processes
-exec('ps -u ' + process.env.USER, function (err, stdout, stderr) {
-  processes = stdout.split('\n').slice(1).map(function(line) {
-    var cmd = line.split(/\s+/)[4];
-    return (/xmonad/.test(cmd) ? 'xmonad' : cmd);
-  });
-  exec('lsb_release -i', function (err, stdout, stderr) {
-    distro = stdout.trim().split(':')[1].trim();
+switch(os.platform()) {
+  case 'darwin':
+  case 'linux':
+  case 'freebsd':
+  case 'sunos':
+    // start by getting the processes
+    exec('ps -u ' + process.env.USER, function (err, stdout, stderr) {
+      processes = stdout.split('\n').slice(1).map(function(line) {
+        var cmd = line.split(/\s+/)[4];
+        return (/xmonad/.test(cmd) ? 'xmonad' : cmd);
+      });
+      exec('lsb_release -i', function (err, stdout, stderr) {
+        distro = stdout.trim().split(':')[1].trim();
+        fullParallel(tasks, show);
+      });
+    });
+    break;
+  case 'win32':
+  case 'win64':
+    processes = [];
+    distro = 'Windows';
     fullParallel(tasks, show);
-  });
-});
-
-
-
+    break;
+}
 
 function show(result) {
   console.log(require('./assets/ubuntu.js')(result));
@@ -193,4 +209,12 @@ function show(result) {
   console.log();
 
   console.log(require('./assets/linuxmint.js')(result));
+
+  console.log();
+
+  console.log(require('./assets/windows.js')(result));
+
+  console.log();
+
+  console.log(require('./assets/osx.js')(result));
 }
