@@ -1,0 +1,5 @@
+{
+ "gnome-session": "GNOME",
+ "ksmserver": "KDE",
+ "xfce4-session": "Xfce"
+}
