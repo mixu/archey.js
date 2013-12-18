@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "archeyjs": "./bin/archeyjs"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/mixu/archey.js"
@@ -24,6 +27,7 @@
     "url": "https://github.com/mixu/archey.js/issues"
   },
   "dependencies": {
-    "bytes": "~0.2.1"
+    "bytes": "~0.2.1",
+    "optimist": "~0.6.0"
   }
 }

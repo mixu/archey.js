@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+var fs = require('fs'),
+    colors = require('../art/colors.js'),
+    opts = require('optimist')
+    .options({
+        'logo': { },
+        'gallery': { },
+        'help': { },
+        'version': { }
+    })
+    .boolean('help')
+    .boolean('gallery')
+    .boolean('verbose'),
+    argv = opts.parse(process.argv);
+
+if(argv['version'] || argv['v'] ) {
+  console.log(require('../package.json').version);
+  process.exit();
+}
+
+if(argv['help']) {
+  return fs.createReadStream(__dirname + '/usage.txt').pipe(process.stdout).on('close', function () { process.exit(1) });
+}
+
+
+function out(distro, item) {
+  if(!item || !item.key || !item.value) {
+    return '';
+  }
+  var cols = {
+    'Ubuntu': colors.redB,
+    'Arch': colors.blueB,
+    'Debian': colors.redB,
+    'Fedora': colors.blueB,
+    'CrunchBang': colors.whiteB,
+    'LinuxMint': colors.greenB,
+    'OS X': colors.whiteB,
+    'Windows': colors.whiteB
+  };
+  return cols[distro] + item.key + ': ' + colors.clear + item.value;
+}
+
+function res(result, distro) {
+  return  [
+            'user', 'hostname', 'distro', 'kernel', 'uptime',
+            'wm', 'de', 'sh', 'term', 'packages', 'cpu',
+            'resolution', 'ram', 'disk'
+          ].map(function(key) {
+            return out(distro, result[key]);
+          }).filter(Boolean)
+          .concat(new Array(20).join(' ').split(''));
+}
+
+var distroArt = {
+  'Ubuntu': '../art/ubuntu.js',
+  'Debian': '../art/debian.js',
+  'LinuxMint': '../art/linuxmint.js',
+  'CrunchBang': '../art/crunchbang.js',
+  'Fedora': '../art/fedora.js',
+  'Arch': '../art/arch.js',
+  'OS X': '../art/osx.js',
+  'Windows': '../art/windows.js',
+};
+
+function show(result, distro) {
+  if(argv.gallery) {
+    Object.keys(distroArt).forEach(function(key) {
+      console.log();
+      console.log(require(distroArt[key])(res(result, key)));
+    });
+  } else {
+    if(argv.logo && distroArt[argv.logo]) {
+      console.log(require(distroArt[argv.logo])(res(result, argv.logo)));
+    } else if(distroArt[distro]) {
+      console.log(require(distroArt[distro])(res(result, distro)));
+    }
+  }
+}
+
+require('../index.js')(show);

@@ -186,115 +186,50 @@ var tasks = [
   }
 ];
 
-function out(distro, item) {
-  if(!item || !item.key || !item.value) {
-    return '';
-  }
-  var cols = {
-    'Ubuntu': colors.redB,
-    'Arch': colors.blueB,
-    'Debian': colors.redB,
-    'Fedora': colors.blueB,
-    'CrunchBang': colors.whiteB,
-    'LinuxMint': colors.greenB,
-    'OS X': colors.whiteB,
-    'Windows': colors.whiteB
-  };
-  return cols[distro] + item.key + ': ' + colors.clear + item.value;
-}
-
 function fullParallel(callbacks, last) {
   var total = 0;
   callbacks.forEach(function(callback, index) {
     callback( function() {
       total++;
       if(total == callbacks.length) {
-        last();
+        last(result, distro);
       }
     });
   });
 }
 
-
-switch(os.platform()) {
-  case 'darwin':
-    processes = [];
-    distro = 'OS X';
-    result.wm = { key: 'Window Manager', value: 'Quartz Compositor' };
-    fullParallel(tasks, show);
-    break;
-  case 'linux':
-  case 'freebsd':
-  case 'sunos':
-    // start by getting the processes
-    exec('ps -u ' + process.env.USER, function (err, stdout, stderr) {
-      processes = stdout.split('\n').slice(1).map(function(line) {
-        var cmd = line.split(/\s+/)[4];
-        return (/xmonad/.test(cmd) ? 'xmonad' : cmd);
+module.exports = function(onDone) {
+  switch(os.platform()) {
+    case 'darwin':
+      processes = [];
+      distro = 'OS X';
+      result.wm = { key: 'Window Manager', value: 'Quartz Compositor' };
+      fullParallel(tasks, onDone);
+      break;
+    case 'linux':
+    case 'freebsd':
+    case 'sunos':
+      // start by getting the processes
+      exec('ps -u ' + process.env.USER, function (err, stdout, stderr) {
+        processes = stdout.split('\n').slice(1).map(function(line) {
+          var cmd = line.split(/\s+/)[4];
+          return (/xmonad/.test(cmd) ? 'xmonad' : cmd);
+        });
+        exec('lsb_release -i', function (err, stdout, stderr) {
+          distro = stdout.trim().split(':')[1].trim();
+          fullParallel(tasks, onDone);
+        });
       });
-      exec('lsb_release -i', function (err, stdout, stderr) {
-        distro = stdout.trim().split(':')[1].trim();
-        fullParallel(tasks, show);
-      });
-    });
-    break;
-  case 'win32':
-  case 'win64':
-    processes = [];
-    distro = 'Windows';
-    result.wm = { key: 'Window Manager', value: 'DWM' };
-    fullParallel(tasks, show);
-    break;
-}
-
-function res(distro) {
-  return  [
-            'user', 'hostname', 'distro', 'kernel', 'uptime',
-            'wm', 'de', 'sh', 'term', 'packages', 'cpu',
-            'resolution', 'ram', 'disk'
-          ].map(function(key) {
-            return out(distro, result[key]);
-          }).filter(Boolean)
-          .concat(new Array(20).join(' ').split(''));
-}
-
-function show() {
-  if(false) {
-    console.log(require('./art/ubuntu.js')(res('Ubuntu')));
-    console.log(require('./art/debian.js')(res('Debian')));
-    console.log(require('./art/linuxmint.js')(res('LinuxMint')));
-    console.log(require('./art/crunchbang.js')(res('CrunchBang')));
-    console.log(require('./art/fedora.js')(res('Fedora')));
-    console.log(require('./art/arch.js')(res('Arch')));
-    console.log(require('./art/osx.js')(res('OS X')));
-    console.log(require('./art/windows.js')(res('Windows')));
-  } else {
-    switch(distro) {
-      case 'Ubuntu':
-        console.log(require('./art/ubuntu.js')(res(distro)));
-        break;
-      case 'Debian':
-        console.log(require('./art/debian.js')(res(distro)));
-        break;
-      case 'LinuxMint':
-        console.log(require('./art/linuxmint.js')(res(distro)));
-        break;
-      case 'CrunchBang':
-        console.log(require('./art/crunchbang.js')(res(distro)));
-        break;
-      case 'Fedora':
-        console.log(require('./art/fedora.js')(res(distro)));
-        break;
-      case 'Arch':
-        console.log(require('./art/arch.js')(res(distro)));
-        break;
-      case 'OS X':
-        console.log(require('./art/osx.js')(res(distro)));
-        break;
-      case 'Windows':
-        console.log(require('./art/windows.js')(res(distro)));
-        break;
-      default:
-    }
+      break;
+    case 'win32':
+    case 'win64':
+      processes = [];
+      distro = 'Windows';
+      result.wm = { key: 'Window Manager', value: 'DWM' };
+      fullParallel(tasks, onDone);
+      break;
+    default:
+      onDone();
   }
-}
+};
+
