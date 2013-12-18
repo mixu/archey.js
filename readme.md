@@ -4,9 +4,11 @@
 
 The command is called `archeyjs` to avoid conflicts with the actual `archey` command.
 
-Example:
+## Examples (note, actual output has colors as well)
 
-      ~ $ archeyjs
+Ubuntu:
+
+    ~ $ archeyjs
                                 .oyhhs:   User: m
                        ..--.., shhhhhh-   Hostname: precise64
                      -+++++++++`:yyhhyo`  OS: Ubuntu 12.04 x64
@@ -25,6 +27,27 @@ Example:
                      `.:://::- -:::::;
                                `.-:-'
 
+OS X:
+
+    [m-mbp ~] archeyjs
+                    :++++.         User: m
+                   /+++/.          Hostname: m-mbp
+           .:-::- .+/:-``.::-      OS: OS X 10.8.5 12F45 x64
+        .:/++++++/::::/++++++/:`   Kernel: 12.5.0
+      .:///////////////////////:`  Uptime: 12 days 7 hours 32 minutes 59 seconds
+      ////////////////////////`    Window Manager: Quartz Compositor
+     -+++++++++++++++++++++++`     Shell: zsh
+     /++++++++++++++++++++++/      Terminal: screen
+     /sssssssssssssssssssssss.     Packages: 10
+     :ssssssssssssssssssssssss-    CPU: MacBookPro10,1
+      osssssssssssssssssssssssso/` Resolution: 1200x1920, 2560x1440
+      `syyyyyyyyyyyyyyyyyyyyyyyy+` RAM: 7.83gb / 8gb
+       `ossssssssssssssssssssss/   Disk: 40G / 210G
+         :ooooooooooooooooooo+.
+          `:+oo+/:-..-:/+o+/-
+
+
+Also includes logos from Arch Linux, CrunchBang, Debian, Fedora, Mint and Windows.
 
 Options:
 
