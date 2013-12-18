@@ -8,7 +8,7 @@ The command is called `archeyjs` to avoid conflicts with the actual `archey` com
 
 Ubuntu:
 
-    ~ $ archeyjs
+    [archey.js @master] archeyjs
                                 .oyhhs:   User: m
                        ..--.., shhhhhh-   Hostname: precise64
                      -+++++++++`:yyhhyo`  OS: Ubuntu 12.04 x64
