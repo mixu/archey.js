@@ -4,7 +4,9 @@
 
 The command is called `archeyjs` to avoid conflicts with the actual `archey` command.
 
-## Examples (note, actual output has colors as well)
+## Examples
+
+Note that the actual output has colors as well.
 
 Ubuntu:
 
@@ -47,7 +49,7 @@ OS X:
           `:+oo+/:-..-:/+o+/-
 
 
-Also includes logos from Arch Linux, CrunchBang, Debian, Fedora, Mint and Windows.
+Also includes logos for Arch Linux, CrunchBang, Debian, Fedora, Mint and Windows.
 
 Options:
 
