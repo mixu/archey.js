@@ -1,3 +1,14 @@
+## Installation and usage
+
+    sudo npm install -g archey
+
+Usage:
+
+    --logo <name>   Display the logo for a specific distribution.
+    --gallery       Display all the logos.
+    --help          Show help.
+    --version       Show version.
+
 ## Credits
 
 Based on Archey by Melik Manukyan and screenfetch by Brett Bohnenkamper. The Archey and screenfetch credits mention the following people, so I want to acknowledge them here as well:
