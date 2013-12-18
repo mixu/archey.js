@@ -59,9 +59,9 @@ Windows:
          it::::tt333EEF @EEEEEEttttt33F  Window Manager: DWM
         ;3=*^```"*4EEV :EEEEEEttttt33@.  Desktop Environment: Aero
         ,.=::::!t=., ` @EEEEEEtttz33QF   CPU: Intel i7-2720QM CPU @ 2.20GHz
-       ;::::::::zt33)   "4EEEtttji3P*    RAM: 10.53gb / 15.95gb
-      :t::::::::tt33.:Z3z..  `` ,..g.    Disk: 964.37gb / 1132.53gb
-      i::::::::zt33F AEEEtttt::::ztF
+       ;::::::::zt33)   "4EEEtttji3P*    Resolution: 1920x1080
+      :t::::::::tt33.:Z3z..  `` ,..g.    RAM: 10.53gb / 15.95gb
+      i::::::::zt33F AEEEtttt::::ztF     Disk: 964.37gb / 1132.53gb
      ;:::::::::t33V ;EEEttttt::::t3
      E::::::::zt33L @EEEtttt::::z3F
     {3=*^```"*4E3) ;EEEtttt:::::tZ`
