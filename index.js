@@ -13,13 +13,13 @@ function color(used, total) {
 }
 
 var result = {
-      user: { key: 'User',  value: process.env.USER },
+      user: { key: 'User',  value: process.env.USER || process.env.USERNAME },
       hostname: { key: 'Hostname', value: os.hostname() },
       uptime: { key: 'Uptime', value: elapsed(os.uptime()) },
-      cpu: { key: 'CPU', value: os.cpus()[0].model },
+      cpu: { key: 'CPU', value: os.cpus()[0].model.replace('Intel(R) Core(TM) ', 'Intel ') },
       ram: { key: 'RAM', value: color( os.totalmem() - os.freemem(), os.totalmem()) },
-      sh: { key: 'Shell', value: process.env.SHELL.split('/').pop() },
-      term: { key: 'Terminal', value: process.env.TERM.split('/').pop() }
+      sh: { key: 'Shell', value: process.env.SHELL && process.env.SHELL.split('/').pop() },
+      term: { key: 'Terminal', value: process.env.TERM && process.env.TERM.split('/').pop() }
     },
     processes,
     distro;
@@ -65,7 +65,13 @@ var tasks = [
           };
           done();
         });
-
+        break;
+        case 'Windows':
+          exec('wmic os get name', function(err, stdout, stderr) {
+            var fullName = stdout.match('.*(Microsoft Windows [A-Za-z0-9]+ ([A-Za-z]+)?).*')[1];
+            result.distro = { key: 'OS', value: fullName };
+            done();
+          });
         break;
       default:
         result.distro = { key: 'OS', value: distro + ' ' + os.arch() };
@@ -74,7 +80,18 @@ var tasks = [
   },
   function(done) {
     if(distro == 'Windows') {
-      return done();
+      exec('wmic os get version', function(err, stdout, stderr) {
+        var version = stdout.replace(/[^\.0-9]+/g, ''),
+            majorVersion = version.split('.')[0];
+        // also detect DE
+        result.de = {
+          key: 'Desktop Environment',
+          value: (majorVersion == 7 || majorVersion == 6 ? 'Aero' : 'Luna'),
+        };
+        result.kernel = { key: 'Kernel', value: version + ' ' + os.arch() };
+        done();
+      });
+      return;
     }
     exec('uname -r', function (err, stdout, stderr) {
       result.kernel = { key: 'Kernel', value: stdout.trim() };
@@ -141,9 +158,17 @@ var tasks = [
   function(done) {
     if(os.platform() == 'darwin') {
       exec("system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $2\"x\"$4\" \"}'", function(err, stdout, stderr) {
-        // may require extra cleanup
         result.resolution = { key: 'Resolution', value: stdout.trim().split('\n').map(function(i) { return i.trim(); }).join(', ') };
         done();
+      });
+    } else if(distro == 'Windows') {
+      exec('wmic desktopmonitor get screenwidth', function(err, stdout, stderr) {
+        var width = stdout.replace(/[^0-9]+/g, '');
+        exec('wmic desktopmonitor get screenheight', function(err, stdout, stderr) {
+          var height = stdout.replace(/[^0-9]+/g, '');
+          result.resolution = { key: 'Resolution', value: width + 'x' + height };
+          done();
+        });
       });
     } else if(process.env.DISPLAY) {
       exec('xdpyinfo', function(err, stdout, stderr) {
@@ -156,7 +181,6 @@ var tasks = [
         done();
       });
     } else {
-      result.resolution = { key: 'Resolution', value: 'No X Server' };
       done();
     }
   },
@@ -173,7 +197,34 @@ var tasks = [
         break;
       case 'win32':
       case 'win64':
-        return done();
+        exec('wmic logicaldisk get DeviceId,FreeSpace,Size', function(err, stdout, stderr) {
+          var values = [], keys;
+          stdout.split('\r\n').map(function(line) {
+              return line.trim();
+            })
+            .filter(Boolean)
+            .forEach(function(line, i) {
+              var parts = line.split(/\s+/),
+                  obj = {};
+              if(i == 0) {
+                keys = parts;
+              } else {
+                parts.forEach(function(part, j) {
+                  obj[keys[j]] = part;
+                });
+                values.push(obj);
+              }
+            });
+          var free = values.reduce(function(prev, item) {
+                return prev + parseInt(item['FreeSpace'], 10);
+              }, 0),
+              total = values.reduce(function(prev, item) {
+                return prev + parseInt(item['Size'], 10);
+              }, 0),
+              used = total - free;
+          result.disk = { key: 'Disk', value: color( used, total) };
+          done();
+        });
       default:
         exec('df -Tlh --total -t ext4 -t ext3 -t ext2 -t reiserfs -t jfs -t ntfs -t fat32 -t btrfs -t fuseblk', function (err, stdout, stderr) {
           var total = stdout.trim().split('\n').pop(),
