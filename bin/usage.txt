@@ -1,0 +1,8 @@
+Usage: archeyjs
+
+Options:
+
+  --logo <name>   Display the logo for a specific distribution.
+  --gallery       Display all the logos.
+  --help          Show help.
+  --version       Show version.

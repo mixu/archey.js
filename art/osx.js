@@ -25,9 +25,9 @@ module.exports = function(result) {
   "%s :ssssssssssssssssssssssss-    %s",
   "%s  osssssssssssssssssssssssso/\` %s",
   "%s  \`syyyyyyyyyyyyyyyyyyyyyyyy+\` %s",
-  "%s   \`ossssssssssssssssssssss/   %s",
-  "%s     :ooooooooooooooooooo+.    %s",
-  "%s      \`:+oo+/:-..-:/+o+/-      %s"
+  "%s   \`ossssssssssssssssssssss/   %s%s",
+  "%s     :ooooooooooooooooooo+.    %s%s",
+  "%s      \`:+oo+/:-..-:/+o+/-      %s%s"
 
   ].join('\n').replace(/%s/g, function(match) {
     return [
@@ -43,9 +43,9 @@ redB, result[8],
 redB, result[9],
 magentaN, result[10],
 magentaN, result[11],
-blueN, result[12],
-blueN, result[13],
-blueN, result[14],
+blueN, clear, result[12],
+blueN, clear, result[13],
+blueN, clear, result[14],
       clear
     ][counter++];
   });
