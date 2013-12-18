@@ -48,6 +48,25 @@ OS X:
          :ooooooooooooooooooo+.
           `:+oo+/:-..-:/+o+/-
 
+Windows:
+
+    C:\>archeyjs
+            ,.=:!!t3Z3z.,                User: m
+           :tt:::tt333EE3                Hostname: m-THINK
+           Et:::ztt33EEEL @Ee.,      .., OS: Microsoft Windows 7 Professional
+          ;tt:::tt333EE7 ;EEEEEEttttt33# Kernel: 6.1.7601 x64
+         :Et:::zt333EEQ. $EEEEEttttt33QL Uptime: 3 days 16 hours
+         it::::tt333EEF @EEEEEEttttt33F  Window Manager: DWM
+        ;3=*^```"*4EEV :EEEEEEttttt33@.  Desktop Environment: Aero
+        ,.=::::!t=., ` @EEEEEEtttz33QF   CPU: Intel i7-2720QM CPU @ 2.20GHz
+       ;::::::::zt33)   "4EEEtttji3P*    RAM: 10.53gb / 15.95gb
+      :t::::::::tt33.:Z3z..  `` ,..g.    Disk: 964.37gb / 1132.53gb
+      i::::::::zt33F AEEEtttt::::ztF
+     ;:::::::::t33V ;EEEttttt::::t3
+     E::::::::zt33L @EEEtttt::::z3F
+    {3=*^```"*4E3) ;EEEtttt:::::tZ`
+                 ` :EEEEtttt::::z7
+                     "VEzjt:;;z>*`
 
 Also includes logos for Arch Linux, CrunchBang, Debian, Fedora, Mint and Windows.
 
