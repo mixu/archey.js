@@ -225,6 +225,7 @@ var tasks = [
           result.disk = { key: 'Disk', value: color( used, total) };
           done();
         });
+        break;
       default:
         exec('df -Tlh --total -t ext4 -t ext3 -t ext2 -t reiserfs -t jfs -t ntfs -t fat32 -t btrfs -t fuseblk', function (err, stdout, stderr) {
           var total = stdout.trim().split('\n').pop(),
