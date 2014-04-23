@@ -19,7 +19,11 @@
     "information",
     "tool"
   ],
-  "author": "Mikito Takada <mikito.takada@gmail.com> (http://mixu.net/)",
+  "author": {
+    "name": "Mikito Takada",
+    "email": "mikito.takada@gmail.com",
+    "url": "http://mixu.net/"
+  },
   "license": "GPLv3",
   "readmeFilename": "readme.md",
   "gitHead": "f98e5c3b16d5ccac588c3b8ebfdf6831160be5ec",
@@ -29,5 +33,12 @@
   "dependencies": {
     "bytes": "~0.2.1",
     "optimist": "~0.6.0"
-  }
+  },
+  "readme": "## Installation and usage\n\n    sudo npm install -g archey\n\nThe command is called `archeyjs` to avoid conflicts with the actual `archey` command.\n\n## Examples\n\nNote that the actual output has colors as well.\n\nUbuntu:\n\n    [archey.js @master] archeyjs\n                                .oyhhs:   User: m\n                       ..--.., shhhhhh-   Hostname: precise64\n                     -+++++++++`:yyhhyo`  OS: Ubuntu 12.04 x64\n                .--  -++++++++/-.-::-`    Kernel: 3.8.0-29-generic\n              .::::-   :-----:/+++/++/.   Uptime: 1 day 19 hours 30 minutes 59 seconds\n             -:::::-.          .:++++++:  Shell: zsh\n        ,,, .:::::-`             .++++++- Terminal: screen\n      ./+++/-`-::-                ./////: Packages: 1266\n      +++++++ .::-                        CPU: Intel(R) Core(TM) i7-3635QM CPU @ 2.40GHz\n      ./+++/-`-::-                :yyyyyo Resolution: 3760x1920\n        ``` `-::::-`             :yhhhhh: RAM: 3.69GB / 3.86GB\n             -:::::-.         `-ohhhhhh+  Disk: 7.4G / 9.2G\n              .::::-` -o+///+oyhhyyyhy:\n               `.--  /yhhhhhhhy+,....\n                     /hhhhhhhhh-.-:::;\n                     `.:://::- -:::::;\n                               `.-:-'\n\nOS X:\n\n    [m-mbp ~] archeyjs\n                    :++++.         User: m\n                   /+++/.          Hostname: m-mbp\n           .:-::- .+/:-``.::-      OS: OS X 10.8.5 12F45 x64\n        .:/++++++/::::/++++++/:`   Kernel: 12.5.0\n      .:///////////////////////:`  Uptime: 12 days 7 hours 32 minutes 59 seconds\n      ////////////////////////`    Window Manager: Quartz Compositor\n     -+++++++++++++++++++++++`     Shell: zsh\n     /++++++++++++++++++++++/      Terminal: screen\n     /sssssssssssssssssssssss.     Packages: 10\n     :ssssssssssssssssssssssss-    CPU: MacBookPro10,1\n      osssssssssssssssssssssssso/` Resolution: 1200x1920, 2560x1440\n      `syyyyyyyyyyyyyyyyyyyyyyyy+` RAM: 7.83gb / 8gb\n       `ossssssssssssssssssssss/   Disk: 40G / 210G\n         :ooooooooooooooooooo+.\n          `:+oo+/:-..-:/+o+/-\n\nWindows:\n\n    C:\\>archeyjs\n            ,.=:!!t3Z3z.,                User: m\n           :tt:::tt333EE3                Hostname: m-THINK\n           Et:::ztt33EEEL @Ee.,      .., OS: Microsoft Windows 7 Professional\n          ;tt:::tt333EE7 ;EEEEEEttttt33# Kernel: 6.1.7601 x64\n         :Et:::zt333EEQ. $EEEEEttttt33QL Uptime: 3 days 16 hours\n         it::::tt333EEF @EEEEEEttttt33F  Window Manager: DWM\n        ;3=*^```\"*4EEV :EEEEEEttttt33@.  Desktop Environment: Aero\n        ,.=::::!t=., ` @EEEEEEtttz33QF   CPU: Intel i7-2720QM CPU @ 2.20GHz\n       ;::::::::zt33)   \"4EEEtttji3P*    Resolution: 1920x1080\n      :t::::::::tt33.:Z3z..  `` ,..g.    RAM: 10.53gb / 15.95gb\n      i::::::::zt33F AEEEtttt::::ztF     Disk: 964.37gb / 1132.53gb\n     ;:::::::::t33V ;EEEttttt::::t3\n     E::::::::zt33L @EEEtttt::::z3F\n    {3=*^```\"*4E3) ;EEEtttt:::::tZ`\n                 ` :EEEEtttt::::z7\n                     \"VEzjt:;;z>*`\n\nAlso includes logos for Arch Linux, CrunchBang, Debian, Fedora, Mint and Windows.\n\nOptions:\n\n    --logo <name>   Display the logo for a specific distribution.\n    --gallery       Display all the logos.\n    --help          Show help.\n    --version       Show version.\n\n## Credits\n\nBased on Archey by Melik Manukyan and screenfetch by Brett Bohnenkamper. The Archey and screenfetch credits mention the following people, so I want to acknowledge them here as well:\n\n- ASCII art by Brett Bohnenkamper\n- Changes by Jerome Launay\n- Fedora support by YeOK\n- OS X proting by shrx and Hu6\n\nI figured I'd better not include their email addresses here given that this is a separate project.\n",
+  "_id": "archey@0.0.3",
+  "dist": {
+    "shasum": "85dab0da4a62a51cdac35c4db9fe8e64dba0a3f3"
+  },
+  "_from": "archey@",
+  "_resolved": "https://registry.npmjs.org/archey/-/archey-0.0.3.tgz"
 }
