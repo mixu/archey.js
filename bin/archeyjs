@@ -29,6 +29,7 @@ function out(distro, item) {
   }
   var cols = {
     'Ubuntu': colors.redB,
+    'Kubuntu': colors.blueB,
     'Arch': colors.blueB,
     'Debian': colors.redB,
     'Fedora': colors.blueB,
@@ -53,6 +54,7 @@ function res(result, distro) {
 
 var distroArt = {
   'Ubuntu': '../art/ubuntu.js',
+  'Kubuntu': '../art/kubuntu.js',
   'Debian': '../art/debian.js',
   'LinuxMint': '../art/linuxmint.js',
   'CrunchBang': '../art/crunchbang.js',

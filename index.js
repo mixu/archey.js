@@ -29,6 +29,7 @@ var tasks = [
     switch(distro) {
       case 'Debian':
       case 'Ubuntu':
+      case 'Kubuntu':
       case 'Fedora':
       case 'CrunchBang':
         exec('lsb_release -r', function(err, stdout, stderr) {
@@ -120,6 +121,7 @@ var tasks = [
     switch(distro) {
       case 'Debian':
       case 'Ubuntu':
+      case 'Kubuntu':
       case 'LinuxMint':
       case 'CrunchBang':
         exec('dpkg --get-selections | grep -v deinstall | wc -l', function(err, stdout, stderr) {
