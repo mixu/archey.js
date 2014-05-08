@@ -1,6 +1,6 @@
 module.exports = {
   "clear": "\x1b[0m",
-  "blackB": "\x1b[0;30m",
+  "blackN": "\x1b[0;30m",
   "blackB": "\x1b[1;30m",
   "redN": "\x1b[0;31m",
   "redB": "\x1b[1;31m",
@@ -16,4 +16,4 @@ module.exports = {
   "cyanB": "\x1b[1;36m",
   "whiteN": "\x1b[0;37m",
   "whiteB": "\x1b[1;37m"
-}
+};
