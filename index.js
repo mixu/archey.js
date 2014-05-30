@@ -69,7 +69,7 @@ var tasks = [
         break;
         case 'Windows':
           exec('wmic os get name', function(err, stdout, stderr) {
-            var fullName = stdout.match('.*(Microsoft Windows [A-Za-z0-9]+ ([A-Za-z]+)?).*')[1];
+            var fullName = stdout.match('.*(Microsoft Windows [A-Za-z0-9\.]+ *([A-Za-z]+)?).*')[1];
             result.distro = { key: 'OS', value: fullName };
             done();
           });
