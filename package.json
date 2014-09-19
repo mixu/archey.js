@@ -1,6 +1,6 @@
 {
   "name": "archey",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Archey.js is a system information tool written in JS (based on Archey) ",
   "main": "index.js",
   "scripts": {
