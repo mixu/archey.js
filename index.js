@@ -164,9 +164,9 @@ var tasks = [
         done();
       });
     } else if(distro == 'Windows') {
-      exec('wmic desktopmonitor get screenwidth', function(err, stdout, stderr) {
+      exec('wmic path Win32_VideoController get CurrentHorizontalResolution', function(err, stdout, stderr) {
         var width = stdout.replace(/[^0-9]+/g, '');
-        exec('wmic desktopmonitor get screenheight', function(err, stdout, stderr) {
+        exec('wmic path Win32_VideoController get CurrentVerticalResolution', function(err, stdout, stderr) {
           var height = stdout.replace(/[^0-9]+/g, '');
           result.resolution = { key: 'Resolution', value: width + 'x' + height };
           done();
@@ -218,10 +218,10 @@ var tasks = [
               }
             });
           var free = values.reduce(function(prev, item) {
-                return prev + parseInt(item['FreeSpace'], 10);
+                return prev + parseInt(item['FreeSpace'] || 0, 10);
               }, 0),
               total = values.reduce(function(prev, item) {
-                return prev + parseInt(item['Size'], 10);
+                return prev + parseInt(item['Size'] || 0, 10);
               }, 0),
               used = total - free;
           result.disk = { key: 'Disk', value: color( used, total) };
