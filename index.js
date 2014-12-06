@@ -16,7 +16,7 @@ var result = {
       user: { key: 'User',  value: process.env.USER || process.env.USERNAME },
       hostname: { key: 'Hostname', value: os.hostname() },
       uptime: { key: 'Uptime', value: elapsed(os.uptime()) },
-      cpu: { key: 'CPU', value: os.cpus()[0].model.replace('Intel(R) Core(TM) ', 'Intel ') },
+      cpu: { key: 'CPU', value: os.cpus()[0].model.replace('Intel(R) Core(TM) ', 'Intel ').replace('Intel(R) Core(TM)2 ', 'Intel ') },
       ram: { key: 'RAM', value: color( os.totalmem() - os.freemem(), os.totalmem()) },
       sh: { key: 'Shell', value: process.env.SHELL && process.env.SHELL.split('/').pop() },
       term: { key: 'Terminal', value: process.env.TERM && process.env.TERM.split('/').pop() }
