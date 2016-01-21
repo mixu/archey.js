@@ -20,14 +20,14 @@
     "tool"
   ],
   "author": "Mikito Takada <mikito.takada@gmail.com> (http://mixu.net/)",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "readmeFilename": "readme.md",
   "gitHead": "f98e5c3b16d5ccac588c3b8ebfdf6831160be5ec",
   "bugs": {
     "url": "https://github.com/mixu/archey.js/issues"
   },
   "dependencies": {
-    "bytes": "~0.2.1",
+    "bytes": "~2.2.0",
     "optimist": "~0.6.0"
   }
 }
