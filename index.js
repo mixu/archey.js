@@ -189,11 +189,13 @@ var tasks = [
   function(done) {
     switch(os.platform()) {
       case 'darwin':
-        exec('df -H / 2>/dev/null | tail -1', function(err, stdout, stderr) {
-          var total = stdout.trim().split('\n').pop(),
-              used = total.split(/\s+/)[3],
-              free = total.split(/\s+/)[2];
-          result.disk = { key: 'Disk', value: used + ' / ' + free };
+        // OSX df is weird, it doesn't have a good option for getting bytes...
+        exec('df -k / 2>/dev/null | tail -1', function(err, stdout, stderr) {
+          var lines = stdout.trim().split('\n').pop(),
+              used = parseInt(lines.split(/\s+/)[2], 10) * 1024,
+              free = parseInt(lines.split(/\s+/)[3], 10) * 1024,
+              total = used + free;
+          result.disk = { key: 'Disk', value: color( used, total) };
           done();
         });
         break;
