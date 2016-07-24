@@ -4,6 +4,11 @@
 
 The command is called `archeyjs` to avoid conflicts with the actual `archey` command.
 
+## Requirements
+
+Linux, OS X:
+- [lsb-release](http://refspecs.linuxbase.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/lsbrelease.html)
+
 ## Examples
 
 Note that the actual output has colors as well.
