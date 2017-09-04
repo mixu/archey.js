@@ -38,6 +38,10 @@ var tasks = [
           done();
         });
       break;
+      case 'ManjaroLinux':
+        result.distro = { key: 'OS', value: 'Manjaro Linux ' + os.arch() };
+        done();
+      break;
       case 'Arch':
         result.distro = { key: 'OS', value:  'Arch Linux ' + os.arch() };
         done();
@@ -135,6 +139,7 @@ var tasks = [
           done();
         });
       break;
+      case 'ManjaroLinux':
       case 'Arch':
         exec('pacman -Q | wc -l', function(err, stdout, stderr) {
           result.packages = { key: 'Packages', value: stdout.trim() };
