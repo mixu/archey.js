@@ -188,6 +188,7 @@ var tasks = [
   },
   function(done) {
     switch(os.platform()) {
+      case 'freebsd':
       case 'darwin':
         // OSX df is weird, it doesn't have a good option for getting bytes...
         exec('df -k / 2>/dev/null | tail -1', function(err, stdout, stderr) {
