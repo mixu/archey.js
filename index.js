@@ -231,7 +231,7 @@ var tasks = [
         });
         break;
       default:
-        exec('df -Tlh --total -t ext4 -t ext3 -t ext2 -t reiserfs -t jfs -t ntfs -t fat32 -t btrfs -t fuseblk', function (err, stdout, stderr) {
+        exec('df -Th --total -t xfs -t ufs -t ext4 -t ext3 -t ext2 -t reiserfs -t jfs -t ntfs -t fat32 -t btrfs -t fuseblk', function (err, stdout, stderr) {
           var total = stdout.trim().split('\n').pop(),
               used = total.split(/\s+/)[3],
               free = total.split(/\s+/)[2];
