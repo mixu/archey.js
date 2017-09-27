@@ -13,21 +13,19 @@ module.exports = function(result) {
   var counter = 0;
 
   return [
-  "%s                :++++.         %s",
-  "%s               /+++/.          %s",
-  "%s       .:-::- .+/:-\`\`.::-      %s",
-  "%s    .:/++++++/::::/++++++/:\`   %s",
-  "%s  .:///////////////////////:\`  %s",
-  "%s  ////////////////////////\`    %s",
-  "%s -+++++++++++++++++++++++\`     %s",
-  "%s /++++++++++++++++++++++/      %s",
-  "%s /sssssssssssssssssssssss.     %s",
-  "%s :ssssssssssssssssssssssss-    %s",
-  "%s  osssssssssssssssssssssssso/\` %s",
-  "%s  \`syyyyyyyyyyyyyyyyyyyyyyyy+\` %s",
-  "%s   \`ossssssssssssssssssssss/   %s%s",
-  "%s     :ooooooooooooooooooo+.    %s%s",
-  "%s      \`:+oo+/:-..-:/+o+/-      %s%s"
+  "%s              ###             %s",
+  "%s            ####              %s",
+  "%s            ###               %s",
+  "%s    #######    #######        %s",
+  "%s  ######################      %s",
+  "%s #####################        %s",
+  "%s ####################         %s",
+  "%s ####################         %s",
+  "%s #####################        %s",
+  "%s  ######################      %s",
+  "%s   ####################       %s",
+  "%s     ################         %s",
+  "%s      ####     #####          %s%s",
 
   ].join('\n').replace(/%s/g, function(match) {
     return [

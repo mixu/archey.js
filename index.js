@@ -38,6 +38,10 @@ var tasks = [
           done();
         });
       break;
+      case 'ManjaroLinux':
+        result.distro = { key: 'OS', value: 'Manjaro Linux ' + os.arch() };
+        done();
+      break;
       case 'Arch':
         result.distro = { key: 'OS', value:  'Arch Linux ' + os.arch() };
         done();
@@ -135,6 +139,7 @@ var tasks = [
           done();
         });
       break;
+      case 'ManjaroLinux':
       case 'Arch':
         exec('pacman -Q | wc -l', function(err, stdout, stderr) {
           result.packages = { key: 'Packages', value: stdout.trim() };
@@ -262,8 +267,17 @@ module.exports = function(onDone) {
       result.wm = { key: 'Window Manager', value: 'Quartz Compositor' };
       fullParallel(tasks, onDone);
       break;
-    case 'linux':
     case 'freebsd':
+      exec('ps -u ' + process.env.USER, function (err, stdout, stderr) {
+        processes = stdout.split('\n').slice(1).map(function (line) {
+          var cmd = line.split(/\s+/)[4];
+          return (/xmonad/.test(cmd) ? 'xmonad' : cmd);
+        });
+        distro = "FreeBSD";
+        fullParallel(tasks, onDone);
+      });
+      break;
+    case 'linux':
     case 'sunos':
       // start by getting the processes
       exec('ps -u ' + process.env.USER, function (err, stdout, stderr) {

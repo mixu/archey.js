@@ -30,8 +30,10 @@ function out(distro, item) {
   var cols = {
     'Ubuntu': colors.redB,
     'Kubuntu': colors.blueB,
+    'ManjaroLinux': colors.yellowB,
     'Arch': colors.blueB,
     'Debian': colors.redB,
+    'FreeBSD': colors.redB,
     'Fedora': colors.blueB,
     'CrunchBang': colors.whiteB,
     'LinuxMint': colors.greenB,
@@ -59,7 +61,9 @@ var distroArt = {
   'LinuxMint': '../art/linuxmint.js',
   'CrunchBang': '../art/crunchbang.js',
   'Fedora': '../art/fedora.js',
+  'ManjaroLinux': '../art/manjaro.js',
   'Arch': '../art/arch.js',
+  'FreeBSD': '../art/freebsd.js',
   'OS X': '../art/osx.js',
   'Windows': '../art/windows.js',
 };
