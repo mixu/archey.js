@@ -73,7 +73,7 @@ Windows:
                  ` :EEEEtttt::::z7
                      "VEzjt:;;z>*`
 
-Also includes logos for Arch Linux, CrunchBang, Debian, Fedora, Mint and Windows.
+Also includes logos for Arch Linux, FreeBSD, Manjaro, CrunchBang, Debian, Fedora, Mint and Windows.
 
 Options:
 
@@ -83,6 +83,8 @@ Options:
     --version       Show version.
 
 ## Credits
+
+Thanks @briemens for additional logos and FreeBSD fixes!
 
 Based on Archey by Melik Manukyan and screenfetch by Brett Bohnenkamper. The Archey and screenfetch credits mention the following people, so I want to acknowledge them here as well:
 
