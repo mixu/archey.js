@@ -27,7 +27,7 @@
     "url": "https://github.com/mixu/archey.js/issues"
   },
   "dependencies": {
-    "bytes": "~2.2.0",
+    "bytes": "~3.0.0",
     "optimist": "~0.6.0"
   }
 }
